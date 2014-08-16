@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_dial_pad">#5677fc</color>
+    <color name="text_dial_hint">#9e9e9e</color>
+</resources>

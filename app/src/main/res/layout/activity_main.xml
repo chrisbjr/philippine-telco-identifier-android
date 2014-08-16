@@ -1,0 +1,392 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e0e0e0" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/dialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_dial_pad"
+                android:fontFamily="@string/text_dial_pad_font_family"
+                android:layout_centerInParent="true" />
+
+            <LinearLayout
+                android:id="@+id/backspaceLinearLayout"
+                android:background="@drawable/selector_dial"
+                android:layout_alignParentRight="true"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dial_pad_padding">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_content_backspace" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+            android:stretchColumns="0,1,2">
+
+            <TableRow>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad1"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad1TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad1TextView"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:text="/" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad2"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad2TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad2TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="ABC" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad3"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad3TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad3TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="DEF" />
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad4"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad4TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="4"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad4TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="GHI" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad5"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad5TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad5TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="JKL" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad6"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad6TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="6"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad6TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="MNO" />
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad7"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad7TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad7TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="PQRS" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad8"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad8TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad8TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="TUV" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad9"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad9TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="9"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad9TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="WXYZ" />
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <RelativeLayout
+                    android:id="@+id/dialPadA"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPadATextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dialPad0"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPad0TextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/text_dial_pad"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/dialPad0TextView"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@string/text_dial_hint_font_family"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_hint"
+                        android:text="+" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dialPadB"
+                    android:background="@drawable/selector_dial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dial_pad_padding">
+
+                    <TextView
+                        android:id="@+id/dialPadBTextView"
+                        android:layout_width="@dimen/text_dial_pad_width"
+                        android:layout_height="wrap_content"
+                        android:text="#"
+                        android:textColor="@color/text_dial_hint"
+                        android:textSize="@dimen/text_dial_pad"
+                        android:fontFamily="@string/text_dial_pad_font_family" />
+
+                </RelativeLayout>
+            </TableRow>
+
+
+        </TableLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
