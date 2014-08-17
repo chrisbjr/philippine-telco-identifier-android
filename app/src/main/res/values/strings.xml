@@ -4,8 +4,8 @@
     <string name="app_name">Philippine Telco Identifier</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     <string name="text_dial_pad_font_family">sans-serif-light</string>
     <string name="text_dial_hint_font_family">sans-serif-light</string>
+    <string name="title_activity_start">StartActivity</string>
 
 </resources>
