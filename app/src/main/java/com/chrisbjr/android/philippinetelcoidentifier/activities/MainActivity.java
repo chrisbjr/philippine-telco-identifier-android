@@ -6,15 +6,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.chrisbjr.android.philippinetelcoidentifier.PhilippineTelcoIdentifier;
 import com.chrisbjr.android.philippinetelcoidentifier.R;
 import com.chrisbjr.android.philippinetelcoidentifier.models.Prefix;
 import com.chrisbjr.android.philippinetelcoidentifier.models.Telco;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -22,16 +28,44 @@ public class MainActivity extends ActionBarActivity {
     private TextView mDialTextView;
     private final String TAG = "MainActivity";
 
-    /** The view to show the ad. */
+    /**
+     * The view to show the ad.
+     */
     private AdView adView;
 
     /* Your ad unit id. Replace with your actual ad unit id. */
     private static final String AD_UNIT_ID = "ca-app-pub-2596844701687081/7357271658";
+    private LinearLayout mHintLinearLayout;
+    private TextView mTelcoResultTextView;
+    private LinearLayout mResultLinearLayout;
+    private LinearLayout mNoResultLinearLayout;
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
+
+        // Get tracker.
+        mTracker = ((PhilippineTelcoIdentifier) getApplication()).getTracker(
+                PhilippineTelcoIdentifier.TrackerName.APP_TRACKER);
+
+        // Set screen name.
+        // Where path is a String representing the screen name.
+        mTracker.setScreenName("MainActivity");
+
+        // Send a screen view.
+        mTracker.send(new HitBuilders.AppViewBuilder().build());
+
+        // Grab the main views first
+        mHintLinearLayout = (LinearLayout) findViewById(R.id.hintLinearLayout);
+        mResultLinearLayout = (LinearLayout) findViewById(R.id.resultLinearLayout);
+        mNoResultLinearLayout = (LinearLayout) findViewById(R.id.noResultLinearLayout);
+        mTelcoResultTextView = (TextView) findViewById(R.id.telcoResultTextView);
 
         mDialTextView = (TextView) findViewById(R.id.dialTextView);
 
@@ -75,13 +109,24 @@ public class MainActivity extends ActionBarActivity {
         adView.setAdSize(AdSize.BANNER);
         adView.setAdUnitId(AD_UNIT_ID);
 
+        LinearLayout layout = (LinearLayout) findViewById(R.id.adViewLinearLayout);
+        layout.addView(adView);
 
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("BC1BEE4693651713E3C13F665FBADE43")
+                .addTestDevice("EB598B3F80F0FDA33A6690B453A6148F")
+                .build();
+
+        // Start loading the ad in the background.
+        adView.loadAd(adRequest);
 
     }
 
     public void getOperator(String dialText) {
 
         if (dialText.length() < 3) {
+            showHint();
             return;
         }
 
@@ -104,6 +149,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
         if (dialText.length() < 3) {
+            showHint();
             return;
         }
 
@@ -117,9 +163,43 @@ public class MainActivity extends ActionBarActivity {
 
         if (telco != null) {
             Log.i(TAG, "Telco is: " + telco.name);
+            mTelcoResultTextView.setText(telco.name);
+            mTracker.send(new HitBuilders.EventBuilder()
+                    .setCategory("Input")
+                    .setAction("PrefixInput")
+                    .setLabel("Success")
+                    .setValue(Long.parseLong(dialText))
+                    .build());
+            showResult();
+        } else {
+            mTracker.send(new HitBuilders.EventBuilder()
+                    .setCategory("Input")
+                    .setAction("PrefixInput")
+                    .setLabel("NotFound")
+                    .setValue(Long.parseLong(dialText))
+                    .build());
+            showNoResult();
         }
 
 
+    }
+
+    private void showHint() {
+        mResultLinearLayout.setVisibility(View.GONE);
+        mNoResultLinearLayout.setVisibility(View.GONE);
+        mHintLinearLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void showResult() {
+        mHintLinearLayout.setVisibility(View.GONE);
+        mNoResultLinearLayout.setVisibility(View.GONE);
+        mResultLinearLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void showNoResult() {
+        mHintLinearLayout.setVisibility(View.GONE);
+        mResultLinearLayout.setVisibility(View.GONE);
+        mNoResultLinearLayout.setVisibility(View.VISIBLE);
     }
 
     public class DailPadClickListener implements View.OnClickListener {
@@ -133,6 +213,9 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public void onClick(View view) {
             String dialText = mDialTextView.getText().toString();
+            if (dialText.length() > 11) {
+                return;
+            }
             dialText = dialText + number;
             mDialTextView.setText(dialText);
             // Check if there is a matching prefix
@@ -157,5 +240,33 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adView != null) {
+            adView.resume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        if (adView != null) {
+            adView.pause();
+        }
+        super.onPause();
+    }
+
+    /**
+     * Called before the activity is destroyed.
+     */
+    @Override
+    public void onDestroy() {
+        // Destroy the AdView.
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }

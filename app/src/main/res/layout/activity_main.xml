@@ -2,13 +2,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#f1f1f1"
     tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/dialPadLinearLayout"
+        android:gravity="center"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/hintLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#9e9e9e"
+                android:fontFamily="@string/text_dial_pad_font_family"
+                android:text="Try something like" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#9e9e9e"
+                android:textSize="@dimen/text_dial_pad"
+                android:fontFamily="@string/text_dial_pad_font_family"
+                android:text="0917" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/resultLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#9e9e9e"
+                android:fontFamily="@string/text_dial_pad_font_family"
+                android:text="The telco of this number is" />
+
+            <TextView
+                android:id="@+id/telcoResultTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/text_dial_pad"
+                android:fontFamily="@string/text_dial_pad_font_family"
+                android:textSize="@dimen/text_dial_pad"
+                android:text="Globe" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/noResultLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Sorry, this prefix is unknown :("
+                android:textColor="#f36c60"
+                android:fontFamily="@string/text_dial_pad_font_family" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/dialPadLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#fff"
         android:orientation="vertical"
         android:layout_above="@+id/adViewLinearLayout">
 
