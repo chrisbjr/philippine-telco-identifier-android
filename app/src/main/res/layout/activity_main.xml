@@ -6,10 +6,11 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/dialPadLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_above="@+id/adViewLinearLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -383,10 +384,17 @@
                 </RelativeLayout>
             </TableRow>
 
-
         </TableLayout>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/adViewLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:background="@color/text_dial_pad"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" />
 
 </RelativeLayout>

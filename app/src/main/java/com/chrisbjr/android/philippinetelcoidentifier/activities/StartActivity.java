@@ -22,7 +22,6 @@ public class StartActivity extends ActionBarActivity {
         mProgressDialog.setCancelable(false);
         mProgressDialog.setMessage("Initializing the application ...");
 
-
         Prefix prefix = new Prefix();
         if (prefix.getCount() <= 0) {
             // Import the telco prefixes

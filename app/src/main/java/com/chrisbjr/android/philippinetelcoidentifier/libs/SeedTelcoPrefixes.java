@@ -34,11 +34,11 @@ public class SeedTelcoPrefixes {
 
         for (int i = 0; i < telcoPrefixesData.size(); i++) {
             JsonObject telcoPrefixes = telcoPrefixesData.get(i).getAsJsonObject();
+            Telco telco = new Telco();
+            telco.name = telcoPrefixes.get("telco").getAsString();
+            telco.save();
             ActiveAndroid.beginTransaction();
             try {
-                Telco telco = new Telco();
-                telco.name = telcoPrefixes.get("telco").getAsString();
-                telco.save();
                 JsonArray telcoPrefixesArray = telcoPrefixes.get("prefixes").getAsJsonArray();
                 for (int j = 0; j < telcoPrefixesArray.size(); j++) {
                     Prefix prefix = new Prefix();
